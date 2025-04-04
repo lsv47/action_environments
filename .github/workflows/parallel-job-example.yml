@@ -42,6 +42,11 @@ jobs:
       - name: Debug message
         if: env.DEBUG == 'true'
         run: echo "Debugging is enabled."
+      - name: Upload test result
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results-1
+          path: test-results.xml
 
   build-and-test-2:
     runs-on: ubuntu-latest
@@ -63,13 +68,28 @@ jobs:
       - name: Debug message
         if: env.DEBUG == 'true'
         run: echo "Debugging is enabled."
+      - name: Upload test result
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results-2
+          path: test-results.xml
 
   post-build-actions:
     needs: [build-and-test-1, build-and-test-2]
     runs-on: ubuntu-latest
     steps:
+      - name: Download test results 1
+        uses: actions/download-artifact@v3
+        with:
+          name: test-results-1
+          path: results/job1
+      - name: Download test results 2
+        uses: actions/download-artifact@v3
+        with:
+          name: test-results-2
+          path: results/job2
       - name: Publish test results
         uses: actions/upload-artifact@v3
         with:
-          name: test-results
-          path: test-results.xml
+          name: combined-test-results
+          path: results/
