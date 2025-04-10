@@ -11,7 +11,10 @@ on:
         required: true
         default: 'error.html'
 env:
-  BUCKET_NAME: !Sub website-artifacts-${AWS::AccountId}-${AWS::Region}-${AWS::StackName}
+  AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}  # Secret mit AWS Account ID
+  AWS_REGION: us-east-1  # Region festlegen
+  BUCKET_NAME: website-artifacts-${{ secrets.AWS_ACCOUNT_ID }}-${{ env.AWS_REGION }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
