@@ -10,9 +10,10 @@ on:
         description: 'Name of the error document'
         required: true
         default: 'error.html'
+
 env:
-  AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}  # Secret mit AWS Account ID
-  AWS_REGION: us-east-1  # Region festlegen
+  AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+  AWS_REGION: us-east-1
   BUCKET_NAME: website-artifacts-${{ secrets.AWS_ACCOUNT_ID }}-${{ env.AWS_REGION }}
 
 jobs:
