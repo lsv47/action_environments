@@ -12,7 +12,7 @@ on:
         default: 'error.html'
 
 env:
-  BUCKET_NAME: website-artifacts-04907263742064950AH4G6
+  BUCKET_NAME: website-artifacts-04907263742064950ah4
 
 jobs:
   build:
