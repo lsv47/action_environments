@@ -26,12 +26,8 @@ jobs:
           aws-session-token: ${{secrets.AWS_SESSION_TOKEN}}
           aws-region: us-east-1
 
-      - name: Check if template file exists
-        run: |
-          echo "Listing current directory"
-          ls -alh ${{ github.workspace }}
-          echo "Check if uda_artifact.yml exists"
-          ls -alh ${{ github.workspace }}/uda_artifact.yml
+      - name: List all .yml files
+        run: ls -alh ${{ github.workspace }}/*.yml
 
       - name: Create CloudFormation Stack
         uses: aws-actions/aws-cloudformation-github-deploy@v1
