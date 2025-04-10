@@ -26,9 +26,6 @@ jobs:
           aws-session-token: ${{secrets.AWS_SESSION_TOKEN}}
           aws-region: us-east-1
 
-      - name: List all .yml files
-        run: ls -alh ${{ github.workspace }}
-
       - name: Create CloudFormation Stack
         uses: aws-actions/aws-cloudformation-github-deploy@v1
         with:
