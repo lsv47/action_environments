@@ -12,8 +12,7 @@ on:
         default: 'error.html'
 
 env:
-  AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
-  AWS_REGION: us-east-1
+  BUCKET_NAME: website-artifacts-04907263742064950AH4G6
 
 jobs:
   build:
@@ -28,12 +27,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-session-token: ${{secrets.AWS_SESSION_TOKEN}}
           aws-region: us-east-1
-      
-      - name: Set BUCKET_NAME
-        id: bucket_name
-        run: |
-          echo "BUCKET_NAME=website-artifacts-${{ secrets.AWS_ACCOUNT_ID }}-${{ env.AWS_REGION }}-uda-artifact" >> $GITHUB_ENV
-          echo "BUCKET_NAME=${{ env.BUCKET_NAME }}"
 
       - name: Create CloudFormation Stack
         uses: aws-actions/aws-cloudformation-github-deploy@v1
